@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Add Information</h1>
+<form [formGroup]="informationForm">  
+<p>
+   <mat-form-field appearance="outline" style="width: 100%;">
+     <mat-label>Username</mat-label>
+     <input formControlName="Username" matInput type="text" placeholder="Enter Name ">
+   </mat-form-field>
+ </p>
+
+ <p>
+   <mat-form-field appearance="outline" style="width: 100%;">
+     <mat-label>Email</mat-label>
+     <input formControlName="Email" matInput type="email" placeholder="Enter Email">
+   </mat-form-field>
+ </p>
+
+ <p>
+   <mat-form-field appearance="outline" style="width: 100%;">
+     <mat-label>Address</mat-label>
+     <input formControlName="Address" matInput type="text" placeholder="Enter Address">
+   </mat-form-field>
+ </p>
+</form>
+ <div mat-dialog-action [align]="'end'">
+<button mat-raised-button color="primary"(click)="addData()" >{{actionBtn}}</button>
+<button style="margin-left: 10px;" mat-raised-button color="warn" mat-dialog-close>Close</button>
+
+ </div>

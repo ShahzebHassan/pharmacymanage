@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Add Information</h1>
+<form [formGroup]="informationForm">  
+<p>
+   <mat-form-field appearance="outline" style="width: 100%;">
+     <mat-label>Name</mat-label>
+     <input formControlName="Name" matInput type="text" placeholder="Enter Name of Medicine">
+   </mat-form-field>
+ </p>
+
+ <p>
+   <mat-form-field appearance="outline" style="width: 100%;">
+     <mat-label>Quantity</mat-label>
+     <input formControlName="Quantity" matInput type="number" placeholder="Enter Quantity of Medicine">
+   </mat-form-field>
+ </p>
+
+ <p>
+   <mat-form-field appearance="outline" style="width: 100%;">
+     <mat-label>Price</mat-label>
+     <input formControlName="Price" matInput type="number" placeholder="Enter Price of Medicine">
+   </mat-form-field>
+ </p>
+</form>
+ <div mat-dialog-action [align]="'end'">
+<button mat-raised-button color="primary"(click)="addInfo()" >{{actionBtn}}</button>
+<button style="margin-left: 10px;" mat-raised-button color="warn" mat-dialog-close>Close</button>
+
+ </div>
