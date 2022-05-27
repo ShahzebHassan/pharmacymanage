@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder ,Validators} from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
  
   public signupForm !: FormGroup;
-  constructor(private formBuilder : FormBuilder,private http : HttpClient,private router:Router) { }
+  constructor(private formBuilder : FormBuilder,private http : HttpClient,private router:Router,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 
@@ -28,11 +29,15 @@ signUp(){
   this.http.post<any>("http://localhost:9000/signupUsers",this.signupForm.value)
   .subscribe({
     next:(res)=>{
-      alert("Signup Successfull");
+      this._snackBar.open("SignUp Successfully", "", {
+        duration: 2000,
+      });
       this.signupForm.reset();
       this.router.navigate(['login']);
     },error:(err)=>{
-      alert("Something went wrong")
+      this._snackBar.open("Something Went Wrong", "", {
+        duration: 2000,
+      });
     }
   })
 }
