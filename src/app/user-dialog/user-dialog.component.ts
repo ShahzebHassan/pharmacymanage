@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-dialog',
@@ -12,7 +13,7 @@ export class UserDialogComponent implements OnInit {
 
   informationForm ! : FormGroup;
   actionBtn : string = "Save"
-  constructor(private formBuilder : FormBuilder, private api : ApiService,
+  constructor(private formBuilder : FormBuilder, private api : ApiService,private _snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public editData : any,
     private dialRef : MatDialogRef<UserDialogComponent>) { }
 
@@ -40,13 +41,17 @@ export class UserDialogComponent implements OnInit {
       this.api.postUserInfo(this.informationForm.value)
       .subscribe({
         next:(res)=>{
-          alert("Info added successfully");
+          this._snackBar.open("Info Added Successfully", "", {
+            duration: 2000,
+          });
           this.dialRef.close('save');
           this.informationForm.reset();
  
         },
         error:()=>{
-          alert("Error while adding Info");
+          this._snackBar.open("Error while Adding Info", "", {
+            duration: 2000,
+          });
         }
  
       })
@@ -59,12 +64,16 @@ export class UserDialogComponent implements OnInit {
    this.api.putUserInfo(this.informationForm.value,this.editData._id)
    .subscribe({
      next:(res)=>{
-       alert('Updated Successfully');
+      this._snackBar.open("Updated Successfully", "", {
+        duration: 2000,
+      });
        this.informationForm.reset();
        this.dialRef.close('update');
      },
      error:()=>{
-      alert("Error while updating!!");
+      this._snackBar.open("Error while Updating", "", {
+        duration: 2000,
+      });
     }
 
    })

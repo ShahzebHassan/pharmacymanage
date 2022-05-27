@@ -32,6 +32,7 @@ import { SignupComponent } from './signup/signup.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { AuthGuard } from './shared/auth.guard';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -75,6 +76,7 @@ import { AuthGuard } from './shared/auth.guard';
     ReactiveFormsModule,
     FormsModule,
     MatSelectModule,
+    MatSnackBarModule,
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

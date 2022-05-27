@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   public loginForm! : FormGroup
-  constructor(private formBuilder : FormBuilder,private http : HttpClient,private router : Router) { }
+  constructor(private formBuilder : FormBuilder,private http : HttpClient,private router : Router,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
       password:['']
     })
   }
+
  login(){
    this.http.get<any>('http://localhost:9000/signupUsers')
    .subscribe({
@@ -27,18 +29,24 @@ export class LoginComponent implements OnInit {
       return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password
      });
      if(user){
-       alert("Login Success");
-      
+      //  alert("Login Success");
+      this._snackBar.open("logged In", "", {
+        duration: 2000,
+      });
        localStorage.setItem('token',"eyJ0eXAiOiJKV1QiLA0KICJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqb2UiLA0KICJleHAiOjEzMDA4MTkzODAsDQogImh0dHA6Ly9leGFtcGxlLmNvbS9pc19yb290Ijp0cnVlfQ.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk")
        this.loginForm.value.email=="jk@gmail.com" ? localStorage.setItem('usertype','admin') : localStorage.setItem('usertype','employee')
 
        this.loginForm.reset();
        this.router.navigate(['navigation']);
      }else{
-       alert("user not found!!");
+      this._snackBar.open("User not Found", "", {
+        duration: 2000,
+      });
      }
    },error:(err)=>{
-     alert('Something went wrong!!')
+    this._snackBar.open("Something Went Wrong", "", {
+      duration: 2000,
+    });
    }
    })
  }

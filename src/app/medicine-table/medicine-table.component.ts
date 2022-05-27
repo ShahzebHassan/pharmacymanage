@@ -7,6 +7,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 // import { UserDialogComponent } from '../user-dialog/user-dialog.component';
 import { MedicineDialogComponent } from '../medicine-dialog/medicine-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -20,9 +21,7 @@ export class MedicineTableComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private dialog : MatDialog,private api : ApiService,
-    
-    ) {}
+  constructor(private dialog : MatDialog,private api : ApiService,private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.getAllInfo();
@@ -48,7 +47,9 @@ export class MedicineTableComponent implements OnInit {
       this.dataSource.sort = this.sort
         },
       error:(_err)=>{
-        alert("Error while Fetching")
+        this._snackBar.open("Error while Fetching", "", {
+          duration: 2000,
+        });
       }
     })
       }
@@ -67,11 +68,15 @@ export class MedicineTableComponent implements OnInit {
 this.api.deleteMedInfo(_id)
 .subscribe({
   next:(res)=>{
-    alert('Deleted Successfully');
+    this._snackBar.open("Deleted Successfully", "", {
+      duration: 2000,
+    });
     this.getAllInfo();
   },
   error:()=>{
-    alert('Error While Deleting');
+    this._snackBar.open("Error While Deleting", "", {
+      duration: 2000,
+    });
   }
 })
       }

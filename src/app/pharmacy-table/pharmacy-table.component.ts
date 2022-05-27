@@ -5,6 +5,7 @@ import { ApiService } from '../services/api.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -19,9 +20,7 @@ export class PharmacyTableComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  constructor(private dialog : MatDialog,private api : ApiService,
-    
-    ) {}
+  constructor(private dialog : MatDialog,private api : ApiService,private _snackBar: MatSnackBar ) {}
 
   ngOnInit(): void {
     this.getAllInfo();
@@ -46,7 +45,9 @@ export class PharmacyTableComponent implements OnInit {
       this.dataSource.sort = this.sort
         },
       error:(_err)=>{
-        alert("Error while Fetching")
+        this._snackBar.open("Error while Fetching", "", {
+          duration: 2000,
+        });
       }
     })
       }
@@ -65,13 +66,17 @@ export class PharmacyTableComponent implements OnInit {
  this.api.deleteInfo(_id)
 .subscribe({
   next:(res)=>{
-    alert('Deleted Successfully');
+    this._snackBar.open("Deleted Successfully", "", {
+      duration: 2000,
+    });
     this.getAllInfo();
     console.log(this.api.deleteInfo);
     
   },
   error:()=>{
-    alert('Error While Deleting');
+    this._snackBar.open("Error while Deleting", "", {
+      duration: 2000,
+    });
   }
 })
  }

@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { UserDialogComponent } from '../user-dialog/user-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-table',
@@ -18,7 +19,7 @@ export class UserTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(private dialog : MatDialog,private api : ApiService,
-    
+    private _snackBar: MatSnackBar
     ) {}
 
   ngOnInit(): void {
@@ -45,7 +46,9 @@ export class UserTableComponent implements OnInit {
       this.dataSource.sort = this.sort
         },
       error:(_err)=>{
-        alert("Error while Fetching")
+        this._snackBar.open("Error While Fetching", "", {
+          duration: 2000,
+        });
       }
     })
       }
@@ -64,11 +67,15 @@ export class UserTableComponent implements OnInit {
 this.api.deleteUserInfo(_id)
 .subscribe({
   next:(res)=>{
-    alert('Deleted Successfully');
+    this._snackBar.open("Deleted Successfully", "", {
+      duration: 2000,
+    });
     this.getAllInfo();
   },
   error:()=>{
-    alert('Error While Deleting');
+    this._snackBar.open("Error While Deleting", "", {
+      duration: 2000,
+    });
   }
 })
       }
