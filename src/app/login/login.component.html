@@ -6,13 +6,13 @@
       <form class="example-form" [formGroup]="loginForm" (ngSubmit)="login()">
         <mat-card-content>
           <mat-form-field class="example-full-width">
-            <input formControlName="email" matInput placeholder="Email Address">
+            <input formControlName="email" matInput placeholder="Email Address" type="text" #u1/>
           </mat-form-field>
           <mat-form-field class="example-full-width">
-            <input formControlName="password" matInput placeholder="Password" type="password">
+            <input formControlName="password" matInput placeholder="Password" type="password" #p2>
           </mat-form-field>
         </mat-card-content>
-        <button mat-stroked-button color="accent" class="btn-block" style="margin-bottom:10px ;">Log in</button>
+        <button mat-stroked-button color="accent" class="btn-block" style="margin-bottom:10px ;" >Log in</button>
         <a routerLink="/signup" >New user? Click to signup!</a>
       </form>
     </mat-card>

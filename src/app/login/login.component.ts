@@ -28,10 +28,12 @@ export class LoginComponent implements OnInit {
      });
      if(user){
        alert("Login Success");
-       localStorage.setItem('token', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjhiNjc3MGE5Mjc0ODRiOTBjYWYzNGQiLCJpYXQiOjE2NTMzNzYxMjd9.By1LQN6wDvtYRbzbSkOVUdmNv6j0kE3W_083c5jhBpU")
-       this.loginForm.value.email=="pharmacy@gmail.com" ? localStorage.setItem('userType','employee') : localStorage.setItem('userType','admin')
+      
+       localStorage.setItem('token',"eyJ0eXAiOiJKV1QiLA0KICJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqb2UiLA0KICJleHAiOjEzMDA4MTkzODAsDQogImh0dHA6Ly9leGFtcGxlLmNvbS9pc19yb290Ijp0cnVlfQ.dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk")
+       this.loginForm.value.email=="jk@gmail.com" ? localStorage.setItem('usertype','admin') : localStorage.setItem('usertype','employee')
+
        this.loginForm.reset();
-       this.router.navigate(['navigation'])
+       this.router.navigate(['navigation']);
      }else{
        alert("user not found!!");
      }

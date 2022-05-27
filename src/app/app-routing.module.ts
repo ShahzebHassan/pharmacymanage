@@ -11,11 +11,11 @@ const routes: Routes = [
 {path:'',redirectTo:'login', pathMatch :'full'},
 {path: 'login' ,component:LoginComponent},
 {path: 'signup', component:SignupComponent},
-{path: 'navigation', component: NavigationComponent,canActivate:[AuthGuard], children:[
-{path: 'pharmacy-table' , component: PharmacyTableComponent},
+{path: 'navigation',canActivate:[AuthGuard],component: NavigationComponent, children:[
+{path: 'pharmacy-table'  ,component: PharmacyTableComponent},
 {path: 'user-table'  , component: UserTableComponent},
 {path: 'medicine-table' , component: MedicineTableComponent},
-{ path: '**', component: PharmacyTableComponent }, 
+{ path: '**' , component: PharmacyTableComponent }, 
 ]},
 
 ];
@@ -23,6 +23,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }
