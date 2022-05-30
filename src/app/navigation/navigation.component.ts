@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-navigation',
@@ -18,10 +19,11 @@ export class NavigationComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver,private router: Router,private _snackBar: MatSnackBar) {}
+  constructor(private breakpointObserver: BreakpointObserver,private router: Router,private _snackBar: MatSnackBar,private cookieService: CookieService) {}
   ngOnInit(): void {}
   logout(){
-    window.localStorage.clear();
+    // window.localStorage.clear();
+    this.cookieService.deleteAll();
     this._snackBar.open("logged Out", "", {
       duration: 2000,
       

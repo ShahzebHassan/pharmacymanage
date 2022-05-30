@@ -33,6 +33,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { AuthGuard } from './shared/auth.guard';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -78,7 +79,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSelectModule,
     MatSnackBarModule,
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,CookieService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 

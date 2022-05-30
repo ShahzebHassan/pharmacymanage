@@ -27,6 +27,7 @@
 // }
 
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router,  } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
@@ -34,12 +35,14 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor( private router : Router,private auth: AuthService){}
+  constructor( private router : Router,private auth: AuthService,private _snackBar: MatSnackBar){}
   canActivate(){
     if(this.auth.IsloggedIn()){
       return true;
     }
-    alert("Please login First")
+    this._snackBar.open("Please login first", "", {
+      duration: 2000,
+    });
     this.router.navigate(['login']);
     return false;
 
