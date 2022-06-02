@@ -2,13 +2,13 @@
     <mat-sidenav #drawer class="sidenav" fixedInViewport
         [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
         [mode]="(isHandset$ | async) ? 'over' : 'side'"
-        [opened]="(isHandset$ | async) === false" style="background-color: #1976d2;">
-      <mat-toolbar>Menu</mat-toolbar>
+        [opened]="(isHandset$ | async) === false" style="background-color: white;">
+      <mat-toolbar style="color: #3cb7f0;">Menu</mat-toolbar>
       <mat-nav-list>
         <mat-form-field >
-          <mat-label style="color: white;">Select the Components</mat-label>
+          <mat-label style="color: #3cb7f0;">Select the Components</mat-label>
           <mat-select [formControl]="toppings" multiple>
-            <mat-select-trigger  style="width: 200px;">
+            <mat-select-trigger>
               {{toppings.value ? toppings.value[0] : ''}}
               <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
                 (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
