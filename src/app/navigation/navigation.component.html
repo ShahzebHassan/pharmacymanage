@@ -5,10 +5,33 @@
         [opened]="(isHandset$ | async) === false" style="background-color: #1976d2;">
       <mat-toolbar>Menu</mat-toolbar>
       <mat-nav-list>
-        <a mat-list-item  [routerLink]="['pharmacy-table']" routerLinkActive="active" > <mat-icon> local_pharmacy</mat-icon>Pharmacy</a>
+        <mat-form-field >
+          <mat-label style="color: white;">Select the Components</mat-label>
+          <mat-select [formControl]="toppings" multiple>
+            <mat-select-trigger  style="width: 200px;">
+              {{toppings.value ? toppings.value[0] : ''}}
+              <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+                (+{{toppings.value.length - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+              </span>
+            </mat-select-trigger>
+            <mat-option (click)="toggleShow()" >Pharmacy</mat-option>
+            <mat-option (click)="toggleShow1()">Users</mat-option>
+            <mat-option (click)="toggleShow2()">Medicine</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div >
+        <a  mat-list-item  [routerLink]="['pharmacy-table']" routerLinkActive="active" *ngIf="isShown" class="row container-fluid"  id="divshow"> <mat-icon> local_pharmacy</mat-icon>Pharmacy</a>
+        </div>
+        <div >
+        <a mat-list-item [routerLink]="['user-table']" routerLinkActive="active" *ngIf="isShown1" class="row container-fluid"  id="divshow" ><mat-icon> account_circle </mat-icon>Users</a>
+        </div>
+        <div *ngIf="isShown2" class="row container-fluid"  id="divshow" >
+        <a mat-list-item [routerLink]="['medicine-table']" routerLinkActive="active"><mat-icon> local_hospital </mat-icon>Medicine</a>
+        </div>
+        <!-- <a mat-list-item  [routerLink]="['pharmacy-table']" routerLinkActive="active" > <mat-icon> local_pharmacy</mat-icon>Pharmacy</a>
         <a mat-list-item [routerLink]="['user-table']" routerLinkActive="active"  ><mat-icon> account_circle </mat-icon>Users</a>
         <a mat-list-item [routerLink]="['medicine-table']" routerLinkActive="active"><mat-icon> local_hospital </mat-icon>Medicine</a>
-       
+        -->
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

@@ -20,6 +20,18 @@
      <input formControlName="Price" matInput type="number" placeholder="Enter Price of Medicine">
    </mat-form-field>
  </p>
+ <p>
+ <mat-form-field appearance="fill">
+  <mat-label>Select an option</mat-label>
+  <mat-select [(value)]="selected">
+    <mat-option>None</mat-option>
+    <mat-option value="Moderator">Moderator</mat-option>
+    <mat-option value="Admin">Admin</mat-option>
+    <mat-option value="User">User</mat-option>
+  </mat-select>
+</mat-form-field>
+</p>
+<p>You selected: {{selected}}</p>
 </form>
  <div mat-dialog-action [align]="'end'">
 <button mat-raised-button color="primary"(click)="addInfo()" >{{actionBtn}}</button>

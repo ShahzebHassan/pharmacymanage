@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent implements OnInit {
+  selected = 'Admin';
   informationForm ! : FormGroup;
   actionBtn : string = "Save"
   constructor(private formBuilder : FormBuilder, private api : ApiService,private _snackBar: MatSnackBar,

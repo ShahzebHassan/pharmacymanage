@@ -34,6 +34,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AuthGuard } from './shared/auth.guard';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { CookieService } from 'ngx-cookie-service';
+import { DefaultComponent } from './default/default.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { CookieService } from 'ngx-cookie-service';
     MedicineDialogComponent,
     LoginComponent,
     SignupComponent,
+    DefaultComponent,
     
   ],
   imports: [

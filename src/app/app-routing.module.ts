@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { AuthGuard } from './shared/auth.guard';
+import { DefaultComponent } from './default/default.component';
 const routes: Routes = [
 {path:'',redirectTo:'login', pathMatch :'full'},
 {path: 'login' ,component:LoginComponent},
@@ -15,7 +16,7 @@ const routes: Routes = [
 {path: 'pharmacy-table'  ,component: PharmacyTableComponent},
 {path: 'user-table'  , component: UserTableComponent},
 {path: 'medicine-table' , component: MedicineTableComponent},
-{ path: '**' , component: PharmacyTableComponent }, 
+{ path: '**' , component: DefaultComponent }, 
 ]},
 
 ];

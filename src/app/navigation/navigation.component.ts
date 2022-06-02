@@ -5,6 +5,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CookieService } from 'ngx-cookie-service';
+import {FormControl} from '@angular/forms';
+
 
 @Component({
   selector: 'app-navigation',
@@ -12,6 +14,31 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent {
+  toppings = new FormControl();
+  isShown: boolean = false ; // hidden by default
+  
+toggleShow() {
+
+this.isShown = ! this.isShown;
+
+}
+
+isShown1: boolean = false ; // hidden by default
+
+toggleShow1() {
+
+this.isShown1 = ! this.isShown1;
+
+}
+
+isShown2: boolean = false ; // hidden by default
+
+toggleShow2() {
+
+this.isShown2 = ! this.isShown2;
+
+}
+
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
